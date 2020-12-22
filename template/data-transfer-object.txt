@@ -1,0 +1,22 @@
+package ##data_transfer_object_package_name##;
+
+##data_transfer_object_import_list##
+
+import java.io.Serializable;
+
+/**
+ * ##persistent_object_class_title##
+ *
+ * @author ##author_name##
+ */
+public final class ##data_transfer_object_class_name## implements Serializable {
+    ##data_transfer_object_field_list##
+
+    @Override
+    public String toString() {
+        return JsonParser.toJson(this);
+    }
+
+    ##data_transfer_object_method_list##
+
+}

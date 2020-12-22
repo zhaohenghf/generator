@@ -1,0 +1,27 @@
+package ##view_object_create_request_package_name##;
+##view_object_create_request_import_list##
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
+
+import javax.validation.constraints.NotEmpty;
+import java.io.Serializable;
+
+/**
+ * ##persistent_object_class_title##
+ * 新增一条记录
+ *
+ * @author ##author_name##
+ */
+@ApiModel
+public class ##view_object_create_request_class_name## implements Serializable {
+
+    ##view_object_create_request_field_list##
+
+    @Override
+    public String toString() {
+        return JsonParser.toJson(this);
+    }
+
+    ##view_object_create_request_method_list##
+
+}

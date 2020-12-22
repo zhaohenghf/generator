@@ -1,0 +1,26 @@
+package ##view_object_criteria_request_package_name##;
+
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
+
+/**
+ * ##persistent_object_class_title##
+ * 查询条件
+ *
+ * @author ##author_name##
+ */
+@ApiModel
+public class ##view_object_criteria_request_class_name## extends VoCriteria {
+
+    @ApiModelProperty(value = "##persistent_object_unique_title##", required = false, dataType = "String", example = "##persistent_object_unique_title##")
+    private String ##persistent_object_unique_name_lower_camel##;
+
+    public String get##persistent_object_unique_name_upper_camel##() {
+        return ##persistent_object_unique_name_lower_camel##;
+    }
+
+    public void set##persistent_object_unique_name_upper_camel##(String ##persistent_object_unique_name_lower_camel##) {
+        this.##persistent_object_unique_name_lower_camel## = ##persistent_object_unique_name_lower_camel##;
+    }
+
+}

@@ -1,0 +1,59 @@
+package ##view_object_mapper_package_name##;
+
+import ##data_transfer_object_package_class##;
+import ##persistent_object_criteria_package_class##;
+import org.mapstruct.Mapper;
+import org.mapstruct.NullValueCheckStrategy;
+import org.mapstruct.NullValuePropertyMappingStrategy;
+
+import java.util.List;
+
+/**
+ * ##persistent_object_class_title##
+ *
+ * @author ##author_name##
+ */
+@Mapper(nullValuePropertyMappingStrategy = NullValuePropertyMappingStrategy.IGNORE,
+        nullValueCheckStrategy = NullValueCheckStrategy.ALWAYS)
+public interface ##view_object_mapper_interface_name## {
+    /**
+     * ##view_object_criteria_request_class_name## -> ##persistent_object_criteria_class_name##
+     *
+     * @param request ##view_object_criteria_request_class_name##
+     * @return ##persistent_object_criteria_class_name##
+     */
+    ##persistent_object_criteria_class_name## voToDto(##view_object_criteria_request_class_name## request);
+
+    /**
+     * ##data_transfer_object_class_name## -> ##view_object_class_name##
+     *
+     * @param record ##data_transfer_object_class_name##
+     * @return ##view_object_class_name##
+     */
+    ##view_object_class_name## dtoToVo(##data_transfer_object_class_name## record);
+
+    /**
+     * ##data_transfer_object_class_name## -> ##view_object_class_name##
+     *
+     * @param list ##data_transfer_object_class_name##
+     * @return ##view_object_class_name##
+     */
+    List<##view_object_class_name##> dtoToVo(List<##data_transfer_object_class_name##> list);
+
+    /**
+     * ##view_object_create_request_class_name## -> ##data_transfer_object_class_name##
+     *
+     * @param request ##view_object_create_request_class_name##
+     * @return ##data_transfer_object_class_name##
+     */
+    ##data_transfer_object_class_name## voToDto(##view_object_create_request_class_name## request);
+
+    /**
+     * ##view_object_update_request_class_name## -> ##data_transfer_object_class_name##
+     *
+     * @param request ##view_object_update_request_class_name##
+     * @return ##data_transfer_object_class_name##
+     */
+    ##data_transfer_object_class_name## voToDto(##view_object_update_request_class_name## request);
+
+}

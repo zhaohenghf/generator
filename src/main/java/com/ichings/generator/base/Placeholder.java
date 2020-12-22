@@ -1,0 +1,92 @@
+package com.ichings.generator.base;
+
+/**
+ * 占位符
+ *
+ * @author changebooks
+ */
+public interface Placeholder {
+    String AUTHOR_NAME = "##author_name##";
+    String PERSISTENT_OBJECT_CLASS_TITLE = "##persistent_object_class_title##";
+    String PERSISTENT_OBJECT_PACKAGE_NAME = "##persistent_object_package_name##";
+    String PERSISTENT_OBJECT_CLASS_NAME = "##persistent_object_class_name##";
+    String PERSISTENT_OBJECT_PACKAGE_CLASS = "##persistent_object_package_class##";
+    String PERSISTENT_OBJECT_IMPORT_LIST = "##persistent_object_import_list##";
+    String PERSISTENT_OBJECT_FIELD_LIST = "##persistent_object_field_list##";
+    String PERSISTENT_OBJECT_METHOD_LIST = "##persistent_object_method_list##";
+    String PERSISTENT_OBJECT_CRITERIA_PACKAGE_NAME = "##persistent_object_criteria_package_name##";
+    String PERSISTENT_OBJECT_CRITERIA_CLASS_NAME = "##persistent_object_criteria_class_name##";
+    String PERSISTENT_OBJECT_CRITERIA_PACKAGE_CLASS = "##persistent_object_criteria_package_class##";
+    String PERSISTENT_OBJECT_ID_TITLE = "##persistent_object_id_title##";
+    String PERSISTENT_OBJECT_UNIQUE_TITLE = "##persistent_object_unique_title##";
+    String PERSISTENT_OBJECT_UNIQUE_NAME_LOWER = "##persistent_object_unique_name_lower##";
+    String PERSISTENT_OBJECT_UNIQUE_NAME_UPPER = "##persistent_object_unique_name_upper##";
+    String PERSISTENT_OBJECT_UNIQUE_NAME_LOWER_CAMEL = "##persistent_object_unique_name_lower_camel##";
+    String PERSISTENT_OBJECT_UNIQUE_NAME_UPPER_CAMEL = "##persistent_object_unique_name_upper_camel##";
+    String PERSISTENT_OBJECT_MAPPER_PACKAGE_NAME = "##persistent_object_mapper_package_name##";
+    String PERSISTENT_OBJECT_MAPPER_INTERFACE_NAME = "##persistent_object_mapper_interface_name##";
+    String PERSISTENT_OBJECT_MAPPER_PACKAGE_INTERFACE = "##persistent_object_mapper_package_interface##";
+    String DATA_TRANSFER_OBJECT_PACKAGE_NAME = "##data_transfer_object_package_name##";
+    String DATA_TRANSFER_OBJECT_CLASS_NAME = "##data_transfer_object_class_name##";
+    String DATA_TRANSFER_OBJECT_PACKAGE_CLASS = "##data_transfer_object_package_class##";
+    String DATA_TRANSFER_OBJECT_IMPORT_LIST = "##data_transfer_object_import_list##";
+    String DATA_TRANSFER_OBJECT_FIELD_LIST = "##data_transfer_object_field_list##";
+    String DATA_TRANSFER_OBJECT_METHOD_LIST = "##data_transfer_object_method_list##";
+    String DATA_TRANSFER_OBJECT_MAPPER_PACKAGE_NAME = "##data_transfer_object_mapper_package_name##";
+    String DATA_TRANSFER_OBJECT_MAPPER_INTERFACE_NAME = "##data_transfer_object_mapper_interface_name##";
+    String DATA_TRANSFER_OBJECT_MAPPER_PACKAGE_INTERFACE = "##data_transfer_object_mapper_package_interface##";
+    String VIEW_OBJECT_CREATE_REQUEST_PACKAGE_NAME = "##view_object_create_request_package_name##";
+    String VIEW_OBJECT_CREATE_REQUEST_CLASS_NAME = "##view_object_create_request_class_name##";
+    String VIEW_OBJECT_CREATE_REQUEST_PACKAGE_CLASS = "##view_object_create_request_package_class##";
+    String VIEW_OBJECT_CREATE_REQUEST_IMPORT_LIST = "##view_object_create_request_import_list##";
+    String VIEW_OBJECT_CREATE_REQUEST_FIELD_LIST = "##view_object_create_request_field_list##";
+    String VIEW_OBJECT_CREATE_REQUEST_METHOD_LIST = "##view_object_create_request_method_list##";
+    String VIEW_OBJECT_UPDATE_REQUEST_PACKAGE_NAME = "##view_object_update_request_package_name##";
+    String VIEW_OBJECT_UPDATE_REQUEST_CLASS_NAME = "##view_object_update_request_class_name##";
+    String VIEW_OBJECT_UPDATE_REQUEST_PACKAGE_CLASS = "##view_object_update_request_package_class##";
+    String VIEW_OBJECT_CRITERIA_REQUEST_PACKAGE_NAME = "##view_object_criteria_request_package_name##";
+    String VIEW_OBJECT_CRITERIA_REQUEST_CLASS_NAME = "##view_object_criteria_request_class_name##";
+    String VIEW_OBJECT_CRITERIA_REQUEST_PACKAGE_CLASS = "##view_object_criteria_request_package_class##";
+    String VIEW_OBJECT_PACKAGE_NAME = "##view_object_package_name##";
+    String VIEW_OBJECT_CLASS_NAME = "##view_object_class_name##";
+    String VIEW_OBJECT_PACKAGE_CLASS = "##view_object_package_class##";
+    String VIEW_OBJECT_IMPORT_LIST = "##view_object_import_list##";
+    String VIEW_OBJECT_FIELD_LIST = "##view_object_field_list##";
+    String VIEW_OBJECT_METHOD_LIST = "##view_object_method_list##";
+    String VIEW_OBJECT_MAPPER_PACKAGE_NAME = "##view_object_mapper_package_name##";
+    String VIEW_OBJECT_MAPPER_INTERFACE_NAME = "##view_object_mapper_interface_name##";
+    String VIEW_OBJECT_MAPPER_PACKAGE_INTERFACE = "##view_object_mapper_package_interface##";
+    String MYBATIS_OBJECT_PACKAGE_NAME = "##mybatis_object_package_name##";
+    String MYBATIS_OBJECT_INTERFACE_NAME = "##mybatis_object_interface_name##";
+    String MYBATIS_OBJECT_PACKAGE_INTERFACE = "##mybatis_object_package_interface##";
+    String MYBATIS_RESOURCE_TABLE_NAME = "##mybatis_resource_table_name##";
+    String MYBATIS_RESOURCE_BASE_COLUMN_LIST = "##mybatis_resource_base_column_list##";
+    String MYBATIS_RESOURCE_BASE_RESULT_MAP = "##mybatis_resource_base_result_map##";
+    String MYBATIS_RESOURCE_INSERT_LIST_COLUMN_LIST = "##mybatis_resource_insert_list_column_list##";
+    String MYBATIS_RESOURCE_INSERT_LIST_VALUE_LIST = "##mybatis_resource_insert_list_value_list##";
+    String MYBATIS_RESOURCE_INSERT_COLUMN_LIST = "##mybatis_resource_insert_column_list##";
+    String MYBATIS_RESOURCE_INSERT_VALUE_LIST = "##mybatis_resource_insert_value_list##";
+    String MYBATIS_RESOURCE_UPDATE_LIST_FIELD_LIST = "##mybatis_resource_update_list_field_list##";
+    String MYBATIS_RESOURCE_UPDATE_FIELD_LIST = "##mybatis_resource_update_field_list##";
+    String DATABASE_PACKAGE_NAME = "##database_package_name##";
+    String DATABASE_INTERFACE_NAME = "##database_interface_name##";
+    String DATABASE_PACKAGE_INTERFACE = "##database_package_interface##";
+    String DATABASE_IMPL_PACKAGE_NAME = "##database_impl_package_name##";
+    String DATABASE_IMPL_CLASS_NAME = "##database_impl_class_name##";
+    String DATABASE_IMPL_PACKAGE_CLASS = "##database_impl_package_class##";
+    String REPOSITORY_PACKAGE_NAME = "##repository_package_name##";
+    String REPOSITORY_INTERFACE_NAME = "##repository_interface_name##";
+    String REPOSITORY_PACKAGE_INTERFACE = "##repository_package_interface##";
+    String REPOSITORY_IMPL_PACKAGE_NAME = "##repository_impl_package_name##";
+    String REPOSITORY_IMPL_CLASS_NAME = "##repository_impl_class_name##";
+    String REPOSITORY_IMPL_PACKAGE_CLASS = "##repository_impl_package_class##";
+    String SERVICE_PACKAGE_NAME = "##service_package_name##";
+    String SERVICE_INTERFACE_NAME = "##service_interface_name##";
+    String SERVICE_PACKAGE_INTERFACE = "##service_package_interface##";
+    String SERVICE_IMPL_PACKAGE_NAME = "##service_impl_package_name##";
+    String SERVICE_IMPL_CLASS_NAME = "##service_impl_class_name##";
+    String SERVICE_IMPL_PACKAGE_CLASS = "##service_impl_package_class##";
+    String CONTROLLER_PACKAGE_NAME = "##controller_package_name##";
+    String CONTROLLER_CLASS_NAME = "##controller_class_name##";
+    String CONTROLLER_PACKAGE_CLASS = "##controller_package_class##";
+}

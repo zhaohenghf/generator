@@ -1,0 +1,133 @@
+package ##database_impl_package_name##;
+
+import ##database_package_interface##;
+import ##mybatis_object_package_interface##;
+import ##persistent_object_mapper_package_interface##;
+import ##persistent_object_package_class##;
+import ##persistent_object_criteria_package_class##;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+
+import java.util.ArrayList;
+import java.util.List;
+
+/**
+ * @author ##author_name##
+ */
+@Component
+public class ##database_impl_class_name## implements ##database_interface_name## {
+
+    @Autowired
+    private ##mybatis_object_interface_name## mapper;
+
+    @Autowired
+    private ##persistent_object_mapper_interface_name## copier;
+
+    @Override
+    public List<##persistent_object_class_name##> findList(##persistent_object_criteria_class_name## criteria) {
+        AssertUtils.nonNull(criteria, "criteria");
+
+        return mapper.findList(criteria);
+    }
+
+    @Override
+    public long getTotalNum(##persistent_object_criteria_class_name## criteria) {
+        AssertUtils.nonNull(criteria, "criteria");
+
+        return mapper.getTotalNum(criteria);
+    }
+
+    @Override
+    public ##persistent_object_class_name## find(Long id) {
+        AssertUtils.isPositive(id, "id");
+
+        ##persistent_object_class_name## record = mapper.find(id);
+        if (Check.isNull(record)) {
+            return null;
+        }
+
+        Long isDeleted = record.getIsDeleted();
+        if (Check.isPositive(isDeleted)) {
+            return null;
+        }
+
+        return record;
+    }
+
+    @Override
+    public ##persistent_object_class_name## findBy##persistent_object_unique_name_upper_camel##(String ##persistent_object_unique_name_lower_camel##) {
+        AssertUtils.nonEmpty(##persistent_object_unique_name_lower_camel##, "##persistent_object_unique_name_lower_camel##");
+
+        return mapper.findBy##persistent_object_unique_name_upper_camel##(##persistent_object_unique_name_lower_camel##);
+    }
+
+    @Override
+    public long insertList(List<##persistent_object_class_name##> list) {
+        AssertUtils.nonEmpty(list, "list");
+
+        List<##persistent_object_class_name##> data = new ArrayList<>();
+        for (##persistent_object_class_name## rawRecord : list) {
+            if (Check.isNull(rawRecord)) {
+                continue;
+            }
+
+            ##persistent_object_class_name## record = checkAndInitializeInsert(rawRecord);
+            data.add(record);
+        }
+
+        if (Check.isEmpty(data)) {
+            return 0L;
+        }
+
+        return mapper.insertList(data);
+    }
+
+    @Override
+    public int insert(##persistent_object_class_name## record) {
+        ##persistent_object_class_name## data = checkAndInitializeInsert(record);
+
+        return mapper.insert(data);
+    }
+
+    @Override
+    public long updateList(List<##persistent_object_class_name##> list) {
+        AssertUtils.nonEmpty(list, "list");
+
+        List<##persistent_object_class_name##> data = new ArrayList<>();
+        for (##persistent_object_class_name## record : list) {
+            if (Check.isNull(record)) {
+                continue;
+            }
+
+            AssertUtils.isPositive(record.getId(), "id");
+            data.add(record);
+        }
+
+        if (Check.isEmpty(data)) {
+            return 0L;
+        }
+
+        return mapper.updateList(list);
+    }
+
+    @Override
+    public int update(##persistent_object_class_name## record) {
+        AssertUtils.nonNull(record, "record");
+        AssertUtils.isPositive(record.getId(), "id");
+
+        return mapper.update(record);
+    }
+
+    private ##persistent_object_class_name## checkAndInitializeInsert(##persistent_object_class_name## record) {
+        ##persistent_object_class_name## r = copier.insert(record);
+
+        AssertUtils.nonNull(r, "record");
+        AssertUtils.isPositive(r.getId(), "id");
+        AssertUtils.nonEmpty(r.get##persistent_object_unique_name_upper_camel##(), "##persistent_object_unique_name_lower_camel##");
+        AssertUtils.nonNull(r.getRemark(), "remark");
+        AssertUtils.nonNull(r.getNote(), "note");
+
+        return r;
+    }
+
+}

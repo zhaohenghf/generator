@@ -1,0 +1,26 @@
+package ##persistent_object_mapper_package_name##;
+
+import org.mapstruct.Mapper;
+import org.mapstruct.Mapping;
+import org.mapstruct.NullValueCheckStrategy;
+import org.mapstruct.NullValuePropertyMappingStrategy;
+
+/**
+ * ##persistent_object_class_title##
+ *
+ * @author ##author_name##
+ */
+@Mapper(nullValuePropertyMappingStrategy = NullValuePropertyMappingStrategy.IGNORE,
+        nullValueCheckStrategy = NullValueCheckStrategy.ALWAYS)
+public interface ##persistent_object_mapper_interface_name## {
+    /**
+     * ##persistent_object_class_name## -> ##persistent_object_class_name##
+     *
+     * @param record ##persistent_object_class_name##
+     * @return ##persistent_object_class_name##
+     */
+    @Mapping(source = "remark", target = "remark", defaultValue = "")
+    @Mapping(source = "note", target = "note", defaultValue = "")
+    ##persistent_object_class_name## insert(##persistent_object_class_name## record);
+
+}

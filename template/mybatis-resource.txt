@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="##mybatis_object_package_interface##">
+    <resultMap id="BaseResultMap" type="##persistent_object_package_class##">
+        ##mybatis_resource_base_result_map##
+    </resultMap>
+    <sql id="Base_Column_List">
+        ##mybatis_resource_base_column_list##
+    </sql>
+    <select id="findList" resultMap="BaseResultMap">
+        SELECT
+        <include refid="Base_Column_List"/>
+        FROM ##mybatis_resource_table_name##
+        <where>
+            <if test="##persistent_object_unique_name_lower_camel## != null">
+                AND ##persistent_object_unique_name_lower## = #{##persistent_object_unique_name_lower_camel##,jdbcType=VARCHAR}
+            </if>
+            AND is_deleted = 0
+        </where>
+        ORDER BY sort ASC
+        <if test="pageSize > 0">
+            LIMIT ${startRow}, ${pageSize}
+        </if>
+    </select>
+    <select id="getTotalNum" resultType="long">
+        SELECT COUNT(*) AS aggregate
+        FROM ##mybatis_resource_table_name##
+        <where>
+            <if test="##persistent_object_unique_name_lower_camel## != null">
+                AND ##persistent_object_unique_name_lower## = #{##persistent_object_unique_name_lower_camel##,jdbcType=VARCHAR}
+            </if>
+            AND is_deleted = 0
+        </where>
+    </select>
+    <select id="find" resultMap="BaseResultMap">
+        SELECT
+        <include refid="Base_Column_List"/>
+        FROM ##mybatis_resource_table_name##
+        <where>
+            AND id = #{id,jdbcType=BIGINT}
+        </where>
+    </select>
+    <select id="findBy##persistent_object_unique_name_upper_camel##" resultMap="BaseResultMap">
+        SELECT
+        <include refid="Base_Column_List"/>
+        FROM ##mybatis_resource_table_name##
+        <where>
+            AND ##persistent_object_unique_name_lower## = #{##persistent_object_unique_name_lower_camel##,jdbcType=VARCHAR}
+            AND is_deleted = 0
+        </where>
+    </select>
+    <insert id="insertList" parameterType="java.util.List">
+        INSERT INTO ##mybatis_resource_table_name##
+        (##mybatis_resource_insert_list_column_list##)
+        VALUES
+        <foreach collection="list" item="record" index="index" separator=",">
+            <if test="record != null">
+                (##mybatis_resource_insert_list_value_list##)
+            </if>
+        </foreach>
+    </insert>
+    <insert id="insert" parameterType="##persistent_object_package_class##">
+        INSERT INTO ##mybatis_resource_table_name##
+        (##mybatis_resource_insert_column_list##)
+        VALUES (##mybatis_resource_insert_value_list##)
+    </insert>
+    <update id="updateList" parameterType="java.util.List">
+        <foreach collection="list" item="record" index="index" open="" close="" separator=";">
+            <if test="record != null">
+                UPDATE ##mybatis_resource_table_name##
+                <set>
+                    ##mybatis_resource_update_list_field_list##
+                </set>
+                <where>
+                    AND id = ${record.id}
+                </where>
+            </if>
+        </foreach>
+    </update>
+    <update id="update" parameterType="##persistent_object_package_class##">
+        UPDATE ##mybatis_resource_table_name##
+        <set>
+            ##mybatis_resource_update_field_list##
+        </set>
+        <where>
+            AND id = #{id,jdbcType=BIGINT}
+        </where>
+    </update>
+</mapper>

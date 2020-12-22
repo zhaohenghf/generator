@@ -1,0 +1,22 @@
+package ##persistent_object_criteria_package_name##;
+
+/**
+ * ##persistent_object_class_title##
+ *
+ * @author ##author_name##
+ */
+public class ##persistent_object_criteria_class_name## extends PageCriteria {
+    /**
+     * ##persistent_object_unique_title##
+     */
+    private String ##persistent_object_unique_name_lower_camel##;
+
+    public String get##persistent_object_unique_name_upper_camel##() {
+        return ##persistent_object_unique_name_lower_camel##;
+    }
+
+    public void set##persistent_object_unique_name_upper_camel##(String ##persistent_object_unique_name_lower_camel##) {
+        this.##persistent_object_unique_name_lower_camel## = ##persistent_object_unique_name_lower_camel##;
+    }
+
+}

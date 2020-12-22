@@ -1,0 +1,97 @@
+package ##service_impl_package_name##;
+
+import ##data_transfer_object_package_class##;
+import ##data_transfer_object_mapper_package_interface##;
+import ##service_package_interface##;
+import ##persistent_object_package_class##;
+import ##persistent_object_criteria_package_class##;
+import ##repository_package_interface##;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import java.util.List;
+
+/**
+ * @author ##author_name##
+ */
+@Service
+public class ##service_impl_class_name## implements ##service_interface_name## {
+
+    private static final Logger logger = LoggerFactory.getLogger(##service_impl_class_name##.class);
+
+    @Autowired
+    private ##repository_interface_name## repository;
+
+    @Autowired
+    private Snowflake snowflake;
+
+    @Autowired
+    private ##data_transfer_object_mapper_interface_name## beanMapper;
+
+    @Override
+    public PageList<##data_transfer_object_class_name##> findList(##persistent_object_criteria_class_name## criteria) {
+        PageList<##persistent_object_class_name##> pageList = repository.findList(criteria);
+        BizAssert.nonNull(pageList, ErrorEnum.NO_RESULT);
+
+        List<##persistent_object_class_name##> list = pageList.getData();
+        List<##data_transfer_object_class_name##> dtoList = beanMapper.poToDto(list);
+
+        return new PageList<>(pageList, dtoList);
+    }
+
+    @Override
+    public ##data_transfer_object_class_name## find(Long id) {
+        BizAssert.isPositive(id, ErrorEnum.ID_POSITIVE);
+
+        ##persistent_object_class_name## record = repository.find(id);
+        return beanMapper.poToDto(record);
+    }
+
+    @Override
+    public boolean insert(##data_transfer_object_class_name## dto) {
+        BizAssert.nonNull(dto, ErrorEnum.ARGS_ERR);
+
+        String ##persistent_object_unique_name_lower_camel## = dto.get##persistent_object_unique_name_upper_camel##();
+        BizAssert.nonEmpty(##persistent_object_unique_name_lower_camel##, BizError.##persistent_object_unique_name_upper##_REQUIRED);
+
+        ##persistent_object_class_name## old##persistent_object_class_name## = repository.findBy##persistent_object_unique_name_upper_camel##(##persistent_object_unique_name_lower_camel##);
+        BizAssert.isNull(old##persistent_object_class_name##, BizError.##persistent_object_unique_name_upper##_CONFLICT);
+
+        dto.setId(snowflake.nextId());
+
+        ##persistent_object_class_name## record = beanMapper.dtoToPo(dto);
+        int affectedRows = repository.insert(record);
+        return affectedRows > 0;
+    }
+
+    @Override
+    public boolean update(##data_transfer_object_class_name## dto) {
+        BizAssert.nonNull(dto, ErrorEnum.ARGS_ERR);
+
+        Long id = dto.getId();
+        BizAssert.isPositive(id, ErrorEnum.ID_POSITIVE);
+
+        String ##persistent_object_unique_name_lower_camel## = dto.get##persistent_object_unique_name_upper_camel##();
+        if (Check.nonEmpty(##persistent_object_unique_name_lower_camel##)) {
+            ##persistent_object_class_name## old##persistent_object_class_name## = repository.findBy##persistent_object_unique_name_upper_camel##(##persistent_object_unique_name_lower_camel##);
+            if (Check.nonNull(old##persistent_object_class_name##)) {
+                BizAssert.isTrue(id.equals(old##persistent_object_class_name##.getId()), ErrorEnum.##persistent_object_unique_name_upper##_CONFLICT);
+            }
+        }
+
+        ##persistent_object_class_name## record = beanMapper.dtoToPo(dto);
+        int affectedRows = repository.update(record);
+        return affectedRows > 0;
+    }
+
+    @Override
+    public boolean delete(Long id) {
+        BizAssert.isPositive(id, ErrorEnum.ID_POSITIVE);
+
+        int affectedRows = repository.delete(id);
+        return affectedRows > 0;
+    }
+
+}

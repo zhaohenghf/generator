@@ -1,0 +1,51 @@
+package ##data_transfer_object_mapper_package_name##;
+
+import ##persistent_object_package_class##;
+import org.mapstruct.Mapper;
+import org.mapstruct.NullValueCheckStrategy;
+import org.mapstruct.NullValuePropertyMappingStrategy;
+
+import java.util.List;
+
+/**
+ * ##persistent_object_class_title##
+ *
+ * @author ##author_name##
+ */
+@Mapper(nullValuePropertyMappingStrategy = NullValuePropertyMappingStrategy.IGNORE,
+        nullValueCheckStrategy = NullValueCheckStrategy.ALWAYS,
+        uses = BooleanCast.class)
+public interface ##data_transfer_object_mapper_interface_name## {
+    /**
+     * ##data_transfer_object_class_name## -> ##persistent_object_class_name##
+     *
+     * @param dto ##data_transfer_object_class_name##
+     * @return ##persistent_object_class_name##
+     */
+    ##persistent_object_class_name## dtoToPo(##data_transfer_object_class_name## dto);
+
+    /**
+     * ##data_transfer_object_class_name## -> ##persistent_object_class_name##
+     *
+     * @param list ##data_transfer_object_class_name##
+     * @return ##persistent_object_class_name##
+     */
+    List<##persistent_object_class_name##> dtoToPo(List<##data_transfer_object_class_name##> list);
+
+    /**
+     * ##persistent_object_class_name## -> ##data_transfer_object_class_name##
+     *
+     * @param record ##persistent_object_class_name##
+     * @return ##data_transfer_object_class_name##
+     */
+    ##data_transfer_object_class_name## poToDto(##persistent_object_class_name## record);
+
+    /**
+     * ##persistent_object_class_name## -> ##data_transfer_object_class_name##
+     *
+     * @param list ##persistent_object_class_name##
+     * @return ##data_transfer_object_class_name##
+     */
+    List<##data_transfer_object_class_name##> poToDto(List<##persistent_object_class_name##> list);
+
+}
